@@ -1,0 +1,26 @@
+<html>
+    <head>
+        <title>Follow Requests</title>
+    </head>
+    <body>
+        <h1>Follow Requests</h1>
+        <div>
+            <form action="/manage" method="post">
+            If you don't check the box, follow request will be denied.
+            <br/>
+                {% for user in requests %}
+                    {{ user.username_follower }}
+                    <input type="checkbox" name="{{ user.username_follower }}" value="1">
+                    Accept follow request?
+                    <br/>
+                {% endfor %}
+                <input type="submit" value="submit">
+            </form>
+        </div>
+        {% if message %}
+            {{ message }}
+            <br/>
+        {% endif %}
+        <a href="/">Go back</a>
+    </body>
+</html>

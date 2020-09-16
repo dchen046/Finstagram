@@ -1,0 +1,38 @@
+<html>
+    <head>
+        <title>Finstagram</title>
+    </head>
+    <body>
+        <h1>Image Gallery</h1>
+        <div>
+            {% for row in images %}
+                <img src="{{url_for('image', image_name=row.filepath)}}" width="300"/>
+                <br/>
+                Poster: {{ row.firstName }} {{ row.lastName }}
+                <br/>
+                PhotoID: {{ row.photoID }}
+                <br/>
+                Timestamp: {{ row.postingdate }}
+                <br/>
+                Caption: {{ row.caption }}
+                <br/>
+                Tagged: <br/>
+                    {% for photo in tagged  %}
+                        {% if photo.photoID == row.photoID %}
+                            {{ photo.username }} {{ photo.firstName }} {{ photo.lastName }}
+                            <br/>
+                        {% endif %}
+                    {% endfor %}
+                Likes: <br/>
+                {% for photo in likes  %}
+                    {% if photo.photoID == row.photoID %}
+                        {{ photo.username }}, rating: {{ photo.rating }}
+                        <br/>
+                    {% endif %}
+                {% endfor %}
+                <br/>
+            {% endfor %}
+        </div>
+        <a href="/">Go back</a>
+    </body>
+</html>
